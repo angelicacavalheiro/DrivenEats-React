@@ -1,33 +1,15 @@
-export default function Almoco(){
-    return (
-            <>
-            <div class = "titulo_almoço righteous"> <p>Primeiro, seu prato</p> </div> 
-            <div class="conteiner_almoço">                               
-                <div class="caixinha_almoço escondido" onclick="selecionarAlmoço(this, 'Frango Yin Yang', 14.90)">
-                    <img src="assets/frango.png" alt="Figura Almoço" class="imagens"/>
-                    <p class="nome_comida roboto">Frango Yin Yang</p>
-                    <p class="descrição refeição roboto">Um pouco de batata, um pouco de salada</p>
-                    <p class="valor_comida roboto">R$14,90</p>
-                    <ion-icon name="checkmark-circle" class="icone verde"></ion-icon>
-                </div>
-                
-                <div class="caixinha_almoço escondido" onclick="selecionarAlmoço(this, 'Macarrão', 15.90)">
-                    <img src="assets/macarrao.jpg" alt="Figura Almoço" class="imagens"/>
-                    <p class="nome_comida roboto">Macarrão</p>
-                    <p class="descrição refeição roboto">Macarrão soltinho, com molho</p>
-                    <p class="valor_comida roboto">R$15,90</p>
-                    <ion-icon name="checkmark-circle" class="icone verde"></ion-icon>
-                </div>
+export default function Almoco(props){
 
-                <div class="caixinha_almoço escondido" onclick="selecionarAlmoço(this, 'Arroz e Feijão', 13.90)">
-                    <img src="assets/arroz.jpg" alt="Figura Almoço" class="imagens"/>
-                    <p class="nome_comida roboto">Arroz e Feijão</p>
-                    <p class="descrição refeição roboto">Um pouco de arroz, um pouco de feijão</p>
-                    <p class="valor_comida roboto">R$13,90</p>
-                    <ion-icon name="checkmark-circle" class="icone verde"></ion-icon>
-                </div>
+    const [img, alt] = props.almoco.imagem;
+    const {nomeComida, descricaoComida, valorComida} = props.almoco;
 
-            </div>
-            </>
+    return (                                           
+            <div className="caixinha_almoço escondido" onclick="selecionarAlmoço(this, 'Frango Yin Yang', 14.90)">
+                <img src={img} alt={alt} className="imagens"/>
+                <p className="nome_comida roboto">{nomeComida}</p>
+                <p className="descrição refeição roboto">{descricaoComida}</p>
+                <p className="valor_comida roboto">{valorComida}</p>
+                <ion-icon name="checkmark-circle" className="icone verde"></ion-icon>
+            </div>            
     )
 }
