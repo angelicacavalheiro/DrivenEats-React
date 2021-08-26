@@ -34,8 +34,8 @@ export default function Sobremesas(){
 
     return (
         <>
-        <div class = "titulo_sobremesa righteous"> <p>Por fim, sua sobremesa</p> </div>
-            <div class="conteiner_sobremesa">
+        <div className = "titulo_sobremesa righteous"> <p>Por fim, sua sobremesa</p> </div>
+            <div className="conteiner_sobremesa">
                 {sobremesas.map((sobremesa) => 
                             ( <Sobremesa sobremesa={sobremesa} />))}       
             </div> 

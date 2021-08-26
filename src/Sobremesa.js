@@ -1,15 +1,27 @@
+import React, { useState } from "react";
+import Contador from "./Contador";
+
 export default function Sobremesa(props) {
 
     const [img, alt] = props.sobremesa.imagem;
     const {nomeSobremesa, descricaoSobremesa, valorSobremesa} = props.sobremesa;
+    const [Class, setClass] = useState("caixinha_sobremesa escondido");
+ 
+
+    function SelecionarSobremesa(){
+    
+      setClass("caixinha_sobremesa selecionar")
+
+      
+    }
 
     return (
-            <div class="caixinha_sobremesa escondido" onclick="selecionarSobremesa(this, 'Mousse', 5.90)">
-                <img src={img} alt={alt} class="imagens"/>
-                <p class="nome_sobremesa roboto">{nomeSobremesa}</p>
-                <p class="descrição adoçar roboto">{descricaoSobremesa}</p>
-                <p class="valor_sobremesa dessert roboto">{valorSobremesa}</p>
-                <ion-icon name="checkmark-circle" class="icone verde"></ion-icon>
+            <div className = {Class} onClick={() => SelecionarSobremesa()}>
+                <img src={img} alt={alt} className="imagens"/>
+                <p className="nome_sobremesa roboto">{nomeSobremesa}</p>
+                <p className="descrição adoçar roboto">{descricaoSobremesa}</p>
+                <p className="valor_sobremesa dessert roboto">{valorSobremesa}</p>
+                <Contador />               
             </div>    
     ) 
 }
