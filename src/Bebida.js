@@ -19,7 +19,7 @@ export default function Bebida(props){
                 <p className ="nome_bebida roboto">{nomeBebida}</p>
                 <p className ="descrição beber roboto">{descricaoBebida}</p>
                 <p className ="valor_bebida drink roboto">{valorBebida}</p>
-                <Contador />
+                <Contador class={[Class, setClass]}/>
             </div>
     )
 }

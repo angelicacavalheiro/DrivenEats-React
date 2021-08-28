@@ -21,7 +21,7 @@ export default function Sobremesa(props) {
                 <p className="nome_sobremesa roboto">{nomeSobremesa}</p>
                 <p className="descrição adoçar roboto">{descricaoSobremesa}</p>
                 <p className="valor_sobremesa dessert roboto">{valorSobremesa}</p>
-                <Contador />               
+                <Contador class={[Class, setClass]} />               
             </div>    
     ) 
 }

@@ -4,7 +4,6 @@ import Bebidas from "./Bebidas"
 import Sobremesas from "./Sobremesas"
 import Footer from "./Footer"
 
-
 export default function App(){
     return (
         <>
