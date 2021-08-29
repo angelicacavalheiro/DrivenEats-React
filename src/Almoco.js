@@ -3,19 +3,22 @@ import Contador from "./Contador";
 
 export default function Almoco(props){
 
-    const [img, alt] = props.almoco.imagem;
-    const {nomeComida, descricaoComida, valorComida} = props.almoco;
-    const [Class, setClass] = useState("caixinha_almoço escondido");
-    
-    //console.log(itens.itemPedido)
-    
+    const {
+        almoco,
+        AlmocoPedido,
+        setAlmocoPedido,
+    } = props; 
 
+    const [img, alt] = almoco.imagem;
+    const {nomeComida, descricaoComida, valorComida} = almoco;
+    const [Class, setClass] = useState("caixinha_almoço escondido");
 
     function SelecionarAlmoco(){
     
-        setClass("caixinha_almoço selecionar")
-        
+        setClass("caixinha_almoço selecionar")   
+        setAlmocoPedido(AlmocoPedido + 1)     
     }
+    console.log(AlmocoPedido)
  
     return (                                           
             <div className = {Class} onClick={() => SelecionarAlmoco()}>
@@ -23,7 +26,7 @@ export default function Almoco(props){
                 <p className="nome_comida roboto">{nomeComida}</p>
                 <p className="descrição refeição roboto">{descricaoComida}</p>
                 <p className="valor_comida roboto">{valorComida}</p>
-                <Contador class={[Class, setClass]}/>   
+                <Contador clas={Class} setClass={setClass} AlmocoPedido={AlmocoPedido} setAlmocoPedido={setAlmocoPedido} />   
             </div>            
     )
 }

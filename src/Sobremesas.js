@@ -1,6 +1,12 @@
 import Sobremesa from "./Sobremesa"
 
-export default function Sobremesas(){
+export default function Sobremesas(props){
+
+    const {
+        SobremesaPedido,
+        setSobremesaPedido,
+    } = props; 
+
 
     const sobremesas = [
         { 
@@ -37,7 +43,7 @@ export default function Sobremesas(){
         <div className = "titulo_sobremesa righteous"> <p>Por fim, sua sobremesa</p> </div>
             <div className="conteiner_sobremesa">
                 {sobremesas.map((sobremesa) => 
-                            ( <Sobremesa sobremesa={sobremesa} />))}       
+                            ( <Sobremesa sobremesa={sobremesa} SobremesaPedido={SobremesaPedido} setSobremesaPedido={setSobremesaPedido} />))}       
             </div> 
             </>
     )

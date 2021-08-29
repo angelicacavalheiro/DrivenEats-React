@@ -1,6 +1,12 @@
 import Bebida from "./Bebida"
 
-export default function Bebidas(){
+export default function Bebidas(props){
+
+    const {
+        BebidaPedido,
+        setBebidaPedido,
+    } = props; 
+
     const bebidas = [
         { 
             imagem: [ "assets/coca.png", 
@@ -36,7 +42,7 @@ export default function Bebidas(){
         <div className  = "titulo_bebida righteous"> <p>Agora, sua bebida</p> </div>
             <div className ="conteiner_bebida">
                 {bebidas.map((bebida) => 
-                        ( <Bebida bebida={bebida} />))}     
+                        ( <Bebida bebida={bebida} BebidaPedido={BebidaPedido} setBebidaPedido={setBebidaPedido}/>))}     
             </div>
         </>
     )

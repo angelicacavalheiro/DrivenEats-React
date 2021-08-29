@@ -1,6 +1,11 @@
 import Almoco from "./Almoco"
 
-export default function Almocos(){
+export default function Almocos(props){
+    const {
+        AlmocoPedido,
+        setAlmocoPedido,
+    } = props; 
+    
     const almocos = [
         { 
             imagem: [ "assets/frango.png", 
@@ -30,16 +35,15 @@ export default function Almocos(){
             valorComida: "R$ 13,90"     
         },
     ]
-    return (
+   
+
+      return (
             <>
             <div class = "titulo_almoço righteous"> <p>Primeiro, seu prato</p> </div> 
             <div className="conteiner_almoço">
                 {almocos.map((almoco) => 
-                    ( <Almoco almoco={almoco} />))}
-            </div>
-
-    
-
+                    ( <Almoco almoco={almoco} AlmocoPedido={AlmocoPedido} setAlmocoPedido={setAlmocoPedido}/>))}
+            </div>   
             </>
     )
 }

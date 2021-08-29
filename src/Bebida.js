@@ -3,15 +3,22 @@ import Contador from "./Contador";
 
 export default function Bebida(props){
 
-    const [img, alt] = props.bebida.imagem;
-    const {nomeBebida, descricaoBebida, valorBebida} = props.bebida;
+    const {
+        bebida,
+        BebidaPedido,
+        setBebidaPedido,
+    } = props; 
+
+    const [img, alt] = bebida.imagem;
+    const {nomeBebida, descricaoBebida, valorBebida} = bebida;
     const [Class, setClass] = useState("caixinha_bebida escondido");
     
     function SelecionarBebida(){
     
         setClass("caixinha_bebida selecionar") 
-        
+        setBebidaPedido(BebidaPedido + 1) 
     }
+    console.log(BebidaPedido)
 
     return (
             <div className = {Class} onClick={() => SelecionarBebida()}>
@@ -19,7 +26,7 @@ export default function Bebida(props){
                 <p className ="nome_bebida roboto">{nomeBebida}</p>
                 <p className ="descrição beber roboto">{descricaoBebida}</p>
                 <p className ="valor_bebida drink roboto">{valorBebida}</p>
-                <Contador class={[Class, setClass]}/>
+                <Contador clas={Class} setClass={setClass} BebidaPedido={BebidaPedido} setBebidaPedido={setBebidaPedido} />
             </div>
     )
 }
