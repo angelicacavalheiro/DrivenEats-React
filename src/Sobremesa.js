@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Contador from "./Contador";
-import ConfirmarPedido from "./ConfirmarPedido";
+import Footer from "./Footer";
 
 export default function Sobremesa(props) {
 
@@ -14,6 +14,7 @@ export default function Sobremesa(props) {
     const {nomeSobremesa, descricaoSobremesa, valorSobremesa} = sobremesa;
     const [Class, setClass] = useState("caixinha_sobremesa escondido");
     const [Sobremesa, setSobremesa] = useState()
+    const [precoSobremesa, setPrecoSobremesa] = useState()
  
 
     function SelecionarSobremesa(){
@@ -22,6 +23,12 @@ export default function Sobremesa(props) {
       setSobremesaPedido(SobremesaPedido + 1) 
 
       setSobremesa(nomeSobremesa)
+
+      let nvalorSobremesa = valorSobremesa.replace('R$', "");
+      let nevalorSobremesa = nvalorSobremesa.replace(',', ".");
+      let newvalorSobremesa = (parseFloat(nevalorSobremesa)).toFixed(2)   
+          
+      setPrecoSobremesa(newvalorSobremesa)  
     }
 
     return (
@@ -31,8 +38,8 @@ export default function Sobremesa(props) {
                 <p className="descrição adoçar roboto">{descricaoSobremesa}</p>
                 <p className="valor_sobremesa dessert roboto">{valorSobremesa}</p>
                 <Contador clas={Class} setClass={setClass} SobremesaPedido={SobremesaPedido} setSobremesaPedido={setSobremesaPedido} 
-                Sobremesa={Sobremesa} setSobremesa={setSobremesa}/> 
-                <ConfirmarPedido Sobremesa={Sobremesa} setSobremesa={setSobremesa}/>                 
+                Sobremesa={Sobremesa} setSobremesa={setSobremesa} precoSobremesa = {precoSobremesa} setPrecoSobremesa = {setPrecoSobremesa}/> 
+                <Footer Sobremesa={Sobremesa} />                 
             </div>    
     ) 
 }

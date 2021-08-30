@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Contador from "./Contador";
-import ConfirmarPedido from "./ConfirmarPedido";
+import Footer from "./Footer";
 
 export default function Almoco(props){
 
@@ -14,6 +14,7 @@ export default function Almoco(props){
     const {nomeComida, descricaoComida, valorComida} = almoco;
     const [Class, setClass] = useState("caixinha_almoço escondido");
     const [Almoco, setAlmoco] = useState()
+    const [precoAlmoco, setPrecoAlmoco] = useState()
 
     function SelecionarAlmoco(){
             
@@ -21,6 +22,12 @@ export default function Almoco(props){
         setAlmocoPedido(AlmocoPedido + 1)  
 
         setAlmoco(nomeComida)
+
+        let nvalorAlmoco = valorComida.replace('R$', "");
+        let nevalorAlmoco = nvalorAlmoco.replace(',', ".");
+        let newvalorAlmoco = (parseFloat(nevalorAlmoco)).toFixed(2)   
+            
+        setPrecoAlmoco(newvalorAlmoco)
                 
     }
     
@@ -32,8 +39,8 @@ export default function Almoco(props){
                 <p className="descrição refeição roboto">{descricaoComida}</p>
                 <p className="valor_comida roboto">{valorComida}</p>
                 <Contador clas={Class} setClass={setClass} AlmocoPedido={AlmocoPedido} setAlmocoPedido={setAlmocoPedido} 
-                Almoco={Almoco} setAlmoco={setAlmoco}/>   
-                <ConfirmarPedido Almoco={Almoco} setAlmoco={setAlmoco}/>               
+                Almoco={Almoco} setAlmoco={setAlmoco} precoAlmoco = {precoAlmoco} setPrecoAlmoco = {setPrecoAlmoco}/>   
+                <Footer Almoco={Almoco} />               
             </div>            
     )
 }

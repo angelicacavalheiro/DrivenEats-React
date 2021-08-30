@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Contador from "./Contador";
-import ConfirmarPedido from "./ConfirmarPedido";
+import Footer from "./Footer";
+
 
 export default function Bebida(props){
 
@@ -30,7 +31,7 @@ export default function Bebida(props){
         setPrecoBebida(newvalorBebida)                       
     }
     
-    console.log(precoBebida)
+    
 
     return (
             <div className = {Class} onClick={() => SelecionarBebida()}>
@@ -40,8 +41,7 @@ export default function Bebida(props){
                 <p className ="valor_bebida drink roboto">{valorBebida}</p>
                 <Contador clas={Class} setClass={setClass} BebidaPedido={BebidaPedido} setBebidaPedido={setBebidaPedido} 
                 Bebida={Bebida} setBebida={setBebida} precoBebida = {precoBebida} setPrecoBebida = {setPrecoBebida}/>   
-                <ConfirmarPedido Bebida={Bebida} setBebida={setBebida}
-                precoBebida = {precoBebida} setPrecoBebida = {setPrecoBebida}/>
+                <Footer Bebida={Bebida} />
             </div>
     )
 }
