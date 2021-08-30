@@ -12,8 +12,15 @@ export default function Contador(props){
         SobremesaPedido,
         setSobremesaPedido,
         Almoco, 
-        setAlmoco
+        setAlmoco,
+        Bebida, 
+        setBebida,
+        Sobremesa, 
+        setSobremesa,
+        precoBebida,
+        setPrecoBebida
     } = props; 
+
 
     const [contador, setContador] = useState(1);    
 
@@ -40,7 +47,8 @@ export default function Contador(props){
                 setClass("caixinha_almoço escondido")
                 setAlmoco([""])
            } else if (clas === "caixinha_bebida selecionar"){
-                setClass("caixinha_bebida escondido")             
+                setClass("caixinha_bebida escondido")    
+                setBebida([""])         
            } else {
                 setClass("caixinha_sobremesa escondido") 
            } 
@@ -48,21 +56,31 @@ export default function Contador(props){
         }    
     }
 
-    function clickPlus(){
+  
+
+    function clickPlus(event){
+
+        event.stopPropagation()
 
         setContador(contador + 1)
 
-        //let newAlmoco = Almoco+ " " +"("+(contador + 1)+"X)"
 
-        setAlmoco(`${Almoco}`+`${contador}` +`X`)
-
+        //logica para guardar numero de pedidos
+        if(clas === "caixinha_almoço selecionar"){    
+            setAlmoco(`${Almoco}` + " (" + `${(contador+1)}` +`X` + ")")
+        } else if (clas === "caixinha_bebida selecionar"){
+            setBebida(`${Bebida}` + " (" + `${(contador+1)}` +`X` + ")")  
+            setPrecoBebida(precoBebida + precoBebida)
+            console.log(precoBebida)
+        } else {
+             setSobremesa(`${Sobremesa}` + " (" + `${(contador+1)}` +`X` + ")") 
+        }           
     }
-    console.log(Almoco)
-   
+      
 
     return(
         <div className="cell">
-            <button onClick={() => clickPlus() } className="plus">
+            <button onClick={(event) => clickPlus(event) } className="plus">
             +
             </button>
 

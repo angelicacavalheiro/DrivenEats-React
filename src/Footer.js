@@ -12,10 +12,9 @@ export default function Footer(props){
     if (AlmocoPedido >= 1 && BebidaPedido >= 1 && SobremesaPedido >= 1){
         return (
             <div class="barra-final">
-                    <bottom class="primeiro-botão finalizar " onclick="enviar_pedido()"> 
+                    <bottom class="primeiro-botão finalizar " onClick={(event) => Confirmar(event)}> 
                         <a class="frase2"> Fechar pedido </a>
                     </bottom>   
-                    <ConfirmarPedido />
                 </div>
         )
     } else {
@@ -26,5 +25,13 @@ export default function Footer(props){
                     </bottom>   
                 </div>                   
             )
+    }
+
+    function Confirmar(event){
+        event.stopPropagation()
+        return(
+            < ConfirmarPedido />
+        )
+       
     }                
 }

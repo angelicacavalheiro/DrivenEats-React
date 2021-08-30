@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Contador from "./Contador";
+import ConfirmarPedido from "./ConfirmarPedido";
 
 export default function Almoco(props){
 
@@ -19,12 +20,10 @@ export default function Almoco(props){
         setClass("caixinha_almoço selecionar")   
         setAlmocoPedido(AlmocoPedido + 1)  
 
-
         setAlmoco(nomeComida)
                 
     }
-    console.log(Almoco)
-
+    
  
     return (                                           
             <div className = {Class} onClick={() => SelecionarAlmoco()}>
@@ -33,7 +32,8 @@ export default function Almoco(props){
                 <p className="descrição refeição roboto">{descricaoComida}</p>
                 <p className="valor_comida roboto">{valorComida}</p>
                 <Contador clas={Class} setClass={setClass} AlmocoPedido={AlmocoPedido} setAlmocoPedido={setAlmocoPedido} 
-                Almoco = {Almoco} setAlmoco = {Almoco, setAlmoco}/>   
+                Almoco={Almoco} setAlmoco={setAlmoco}/>   
+                <ConfirmarPedido Almoco={Almoco} setAlmoco={setAlmoco}/>               
             </div>            
     )
 }

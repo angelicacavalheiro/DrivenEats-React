@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Contador from "./Contador";
+import ConfirmarPedido from "./ConfirmarPedido";
 
 export default function Sobremesa(props) {
 
@@ -12,12 +13,15 @@ export default function Sobremesa(props) {
     const [img, alt] = sobremesa.imagem;
     const {nomeSobremesa, descricaoSobremesa, valorSobremesa} = sobremesa;
     const [Class, setClass] = useState("caixinha_sobremesa escondido");
+    const [Sobremesa, setSobremesa] = useState()
  
 
     function SelecionarSobremesa(){
     
       setClass("caixinha_sobremesa selecionar") 
       setSobremesaPedido(SobremesaPedido + 1) 
+
+      setSobremesa(nomeSobremesa)
     }
 
     return (
@@ -26,7 +30,9 @@ export default function Sobremesa(props) {
                 <p className="nome_sobremesa roboto">{nomeSobremesa}</p>
                 <p className="descrição adoçar roboto">{descricaoSobremesa}</p>
                 <p className="valor_sobremesa dessert roboto">{valorSobremesa}</p>
-                <Contador clas={Class} setClass={setClass} SobremesaPedido={SobremesaPedido} setSobremesaPedido={setSobremesaPedido}  />               
+                <Contador clas={Class} setClass={setClass} SobremesaPedido={SobremesaPedido} setSobremesaPedido={setSobremesaPedido} 
+                Sobremesa={Sobremesa} setSobremesa={setSobremesa}/> 
+                <ConfirmarPedido Sobremesa={Sobremesa} setSobremesa={setSobremesa}/>                 
             </div>    
     ) 
 }
