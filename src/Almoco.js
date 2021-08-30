@@ -12,13 +12,19 @@ export default function Almoco(props){
     const [img, alt] = almoco.imagem;
     const {nomeComida, descricaoComida, valorComida} = almoco;
     const [Class, setClass] = useState("caixinha_almoço escondido");
+    const [Almoco, setAlmoco] = useState()
 
     function SelecionarAlmoco(){
-    
+            
         setClass("caixinha_almoço selecionar")   
-        setAlmocoPedido(AlmocoPedido + 1)     
+        setAlmocoPedido(AlmocoPedido + 1)  
+
+
+        setAlmoco(nomeComida)
+                
     }
-    console.log(AlmocoPedido)
+    console.log(Almoco)
+
  
     return (                                           
             <div className = {Class} onClick={() => SelecionarAlmoco()}>
@@ -26,7 +32,8 @@ export default function Almoco(props){
                 <p className="nome_comida roboto">{nomeComida}</p>
                 <p className="descrição refeição roboto">{descricaoComida}</p>
                 <p className="valor_comida roboto">{valorComida}</p>
-                <Contador clas={Class} setClass={setClass} AlmocoPedido={AlmocoPedido} setAlmocoPedido={setAlmocoPedido} />   
+                <Contador clas={Class} setClass={setClass} AlmocoPedido={AlmocoPedido} setAlmocoPedido={setAlmocoPedido} 
+                Almoco = {Almoco} setAlmoco = {Almoco, setAlmoco}/>   
             </div>            
     )
 }

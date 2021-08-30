@@ -1,3 +1,5 @@
+import ConfirmarPedido from "./ConfirmarPedido";
+
 export default function Footer(props){
 
     const {
@@ -13,6 +15,7 @@ export default function Footer(props){
                     <bottom class="primeiro-botão finalizar " onclick="enviar_pedido()"> 
                         <a class="frase2"> Fechar pedido </a>
                     </bottom>   
+                    <ConfirmarPedido />
                 </div>
         )
     } else {

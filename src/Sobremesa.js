@@ -19,7 +19,6 @@ export default function Sobremesa(props) {
       setClass("caixinha_sobremesa selecionar") 
       setSobremesaPedido(SobremesaPedido + 1) 
     }
-    console.log(SobremesaPedido)
 
     return (
             <div className = {Class} onClick={() => SelecionarSobremesa()}>

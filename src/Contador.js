@@ -11,6 +11,8 @@ export default function Contador(props){
         setBebidaPedido,
         SobremesaPedido,
         setSobremesaPedido,
+        Almoco, 
+        setAlmoco
     } = props; 
 
     const [contador, setContador] = useState(1);    
@@ -36,20 +38,27 @@ export default function Contador(props){
         if(contador === 1){
            if(clas === "caixinha_almoço selecionar"){    
                 setClass("caixinha_almoço escondido")
+                setAlmoco([""])
            } else if (clas === "caixinha_bebida selecionar"){
-                setClass("caixinha_bebida escondido")                
+                setClass("caixinha_bebida escondido")             
            } else {
                 setClass("caixinha_sobremesa escondido") 
            } 
            setContador(contador)                                         
-        }
+        }    
     }
 
     function clickPlus(){
 
         setContador(contador + 1)
 
+        //let newAlmoco = Almoco+ " " +"("+(contador + 1)+"X)"
+
+        setAlmoco(`${Almoco}`+`${contador}` +`X`)
+
     }
+    console.log(Almoco)
+   
 
     return(
         <div className="cell">

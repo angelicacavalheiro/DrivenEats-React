@@ -18,7 +18,6 @@ export default function Bebida(props){
         setClass("caixinha_bebida selecionar") 
         setBebidaPedido(BebidaPedido + 1) 
     }
-    console.log(BebidaPedido)
 
     return (
             <div className = {Class} onClick={() => SelecionarBebida()}>
