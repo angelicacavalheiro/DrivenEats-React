@@ -6,23 +6,19 @@ export default function Sobremesa(props) {
 
     const {
       sobremesa,
-      SobremesaPedido,
-      setSobremesaPedido,
+      mudaQuantidade
   } = props; 
 
     const [img, alt] = sobremesa.imagem;
-    const {nomeSobremesa, descricaoSobremesa, valorSobremesa} = sobremesa;
+    const {nomeSobremesa, descricaoSobremesa, valorSobremesa, quantidade} = sobremesa;
     const [Class, setClass] = useState("caixinha_sobremesa escondido");
-    const [Sobremesa, setSobremesa] = useState()
     const [precoSobremesa, setPrecoSobremesa] = useState()
  
 
     function SelecionarSobremesa(){
     
-      setClass("caixinha_sobremesa selecionar") 
-      setSobremesaPedido(SobremesaPedido + 1) 
-
-      setSobremesa(nomeSobremesa)
+      setClass("caixinha_sobremesa selecionar")  
+      mudaQuantidade(sobremesa, sobremesa.quantidade+1)
 
       let nvalorSobremesa = valorSobremesa.replace('R$', "");
       let nevalorSobremesa = nvalorSobremesa.replace(',', ".");
@@ -37,9 +33,7 @@ export default function Sobremesa(props) {
                 <p className="nome_sobremesa roboto">{nomeSobremesa}</p>
                 <p className="descrição adoçar roboto">{descricaoSobremesa}</p>
                 <p className="valor_sobremesa dessert roboto">{valorSobremesa}</p>
-                <Contador clas={Class} setClass={setClass} SobremesaPedido={SobremesaPedido} setSobremesaPedido={setSobremesaPedido} 
-                Sobremesa={Sobremesa} setSobremesa={setSobremesa} precoSobremesa = {precoSobremesa} setPrecoSobremesa = {setPrecoSobremesa}/> 
-                <Footer Sobremesa={Sobremesa} />                 
+                <Contador clas={Class} setClass={setClass} sobremesa={sobremesa} mudaQuantidade={mudaQuantidade}/>                
             </div>    
     ) 
 }

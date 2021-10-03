@@ -1,28 +1,28 @@
 export default function Footer(props){
 
     const {
-        AlmocoPedido,
-        BebidaPedido,
-        SobremesaPedido,
         Almoco,
         Bebida,
         Sobremesa,
-        precoTotal
+        categorias
     } = props;
+    
+    let finalizarPedido = checarSelecaodeCategorias(categorias)
+
+    function checarSelecaodeCategorias(categorias){
+
+        const selecionarCategorias = categorias.filter((categoria) => {
+            return categoria.produtos.find(produto => produto.quantidade > 0)
+        })
+        return selecionarCategorias.length === categorias.length
+    }
 
     
-    let almoco
-
-    if (Almoco !== undefined){
-        console.log(Almoco) 
-    }    
- 
-    console.log(almoco)
-    
-    if (AlmocoPedido >= 1 && BebidaPedido >= 1 && SobremesaPedido >= 1){
+    if (finalizarPedido){
         return (
             <div class="barra-final">
-                    <bottom class="primeiro-botão finalizar " onClick={() => Confirmar(almoco)}> 
+                    <bottom class="primeiro-botão finalizar "> 
+                    {/* <bottom class="primeiro-botão finalizar " onClick={() => Confirmar(almoco)}>  */}
                         <a class="frase2"> Fechar pedido </a>
                     </bottom>   
                 </div>
@@ -37,18 +37,17 @@ export default function Footer(props){
             )
     }
 
-    function Confirmar(){
+    // function Confirmar(){
 
-        let valorTotal = precoTotal
-        console.log(almoco)
+    //     let valorTotal = precoTotal
     
-        const mensagem = encodeURIComponent(`Olá, gostaria de fazer o pedido:
-        - Prato: ${almoco} 
-        - Bebida: ${Bebida}
-        - Sobremesa: ${Sobremesa}
-        - Total R$: ${valorTotal}`);
-        window.location.href = `https://wa.me/5511977505769?text=${mensagem}`;
+    //     const mensagem = encodeURIComponent(`Olá, gostaria de fazer o pedido:
+    //     - Prato: ${almoco} 
+    //     - Bebida: ${Bebida}
+    //     - Sobremesa: ${Sobremesa}
+    //     - Total R$: ${valorTotal}`);
+    //     window.location.href = `https://wa.me/5511977505769?text=${mensagem}`;
         
        
-    }                
+    // }                
 }

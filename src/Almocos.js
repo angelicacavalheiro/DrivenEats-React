@@ -2,47 +2,17 @@ import Almoco from "./Almoco"
 
 export default function Almocos(props){
     const {
-        AlmocoPedido,
-        setAlmocoPedido,
-    } = props; 
-    
-    const almocos = [
-        { 
-            imagem: [ "assets/frango.png", 
-            "Prato com frango frito e salada"
-        ],
-            nomeComida: "Frango Yin Yang",
-            descricaoComida: "Um pouco de batata, um pouco de salada",
-            valorComida: "R$ 14,90"     
-
-        },
-        { 
-            imagem: [ "assets/macarrao.jpg", 
-            "Prato com spaghetti"
-        ],
-            nomeComida: "Spaghetti",
-            descricaoComida: "Spaghetti ao alho e óleo",
-            valorComida: "R$ 15,90"     
-
-        },
-        { 
-            imagem: [ "assets/arroz.jpg", 
-            "Prato com arroz feijão e salada"
-
-        ],
-            nomeComida: "Arroz e Feijão",
-            descricaoComida: "Um pouco de arroz, um pouco de feijão",
-            valorComida: "R$ 13,90"     
-        },
-    ]
-   
+        titulo,
+        produtos,
+        mudaQuantidade
+    } = props;    
 
       return (
             <>
-            <div class = "titulo_almoço righteous"> <p>Primeiro, seu prato</p> </div> 
+            <div class = "titulo_almoço righteous"> <p>{titulo}</p> </div> 
             <div className="conteiner_almoço">
-                {almocos.map((almoco) => 
-                    ( <Almoco almoco={almoco} AlmocoPedido={AlmocoPedido} setAlmocoPedido={setAlmocoPedido}/>))}
+                {produtos.map((almoco) => 
+                    (<Almoco almoco={almoco} mudaQuantidade={mudaQuantidade}/>))}
             </div>   
             </>
     )

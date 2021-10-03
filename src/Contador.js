@@ -1,130 +1,71 @@
 import React, { useState } from "react";
-import Footer from "./Footer";
 
 export default function Contador(props){
 
     const {
         clas, 
-        setClass,
-        AlmocoPedido,
-        setAlmocoPedido,
-        BebidaPedido,
-        setBebidaPedido,
-        SobremesaPedido,
-        setSobremesaPedido,
-        Almoco, 
-        setAlmoco,
-        Bebida, 
-        setBebida,
-        Sobremesa, 
-        setSobremesa,
-        precoBebida,
-        setPrecoBebida,
-        precoSobremesa,
-        setPrecoSobremesa,
-        precoAlmoco,
-        setPrecoAlmoco
+        setClass,    
+        almoco,
+        bebida,
+        sobremesa,
+        mudaQuantidade
     } = props; 
 
-    let precoDrink = precoBebida
-    let precoDoce = precoSobremesa
-    let precoPrato = precoAlmoco
-    
-    //console.log(precoDrink)
-    let precoDrinkTotal 
-    let precoDoceTotal
-    let precoPratoTotal
-    let precoTotal
+    const [contador, setContador] = useState(1);  
 
-    const [contador, setContador] = useState(1);    
-
-    function clickMinus(event) {
-
-        event.stopPropagation()
-
-        setContador(contador - 1);   
-
-        //logica para contabilizar se há pelo menos 1 opçao de cada marcada
+    function decrementaQuantidade(event) {
+        event.stopPropagation()  
 
         if(clas === "caixinha_almoço selecionar"){    
-            setAlmocoPedido(AlmocoPedido - 1);
+            mudaQuantidade(almoco, almoco.quantidade-1)
+            setContador(contador-1)
+            
         } else if (clas === "caixinha_bebida selecionar"){
-            setBebidaPedido(BebidaPedido - 1);  
-
+            mudaQuantidade(bebida, bebida.quantidade-1)
+            setContador(contador-1)
         } else {
-            setSobremesaPedido(SobremesaPedido - 1);
-        }           
+            mudaQuantidade(sobremesa, sobremesa.quantidade-1)
+            setContador(contador-1)
+        } 
 
-        //logica para retirar borda verde e contador da opção escolhida
+        //logica para retirar borda verde e zerar quantidade
 
         if(contador === 1){
-           if(clas === "caixinha_almoço selecionar"){    
-                setClass("caixinha_almoço escondido")
-                setAlmoco([""])
-                precoPratoTotal = 0
+           if(clas === "caixinha_almoço selecionar"){   
+                mudaQuantidade(almoco, 0) 
+                setClass("caixinha_almoço escondido")                
            } else if (clas === "caixinha_bebida selecionar"){
-                setClass("caixinha_bebida escondido")    
-                setBebida([""])  
-                precoDrinkTotal = 0  
+                setClass("caixinha_bebida escondido")  
+                mudaQuantidade(bebida, 0)   
            } else {
                 setClass("caixinha_sobremesa escondido") 
-                precoDoceTotal = 0
+                mudaQuantidade(sobremesa, 0) 
            } 
            setContador(contador)                                         
         }    
     }
   
-
-    function clickPlus(event){
-
+    function incrementaQuantidade (event){
         event.stopPropagation()
 
-        setContador(contador + 1)
-
-
-        //logica para guardar numero de pedidos
         if(clas === "caixinha_almoço selecionar"){    
-            setAlmoco(`${Almoco}` + " (" + `${(contador+1)}` +`X` + ")")
-
-            precoPratoTotal = ((precoPrato) * (contador+1) ).toFixed(2)
-            console.log(precoPratoTotal)  
-
-
+            mudaQuantidade(almoco, almoco.quantidade+1)
+            setContador(almoco.quantidade)
+            
         } else if (clas === "caixinha_bebida selecionar"){
-            setBebida(`${Bebida}` + " (" + `${(contador+1)}` +`X` + ")") 
-
-            precoDrinkTotal = ((precoDrink) * (contador+1) ).toFixed(2)
-           console.log(precoDrinkTotal)          
-            
-            
+            mudaQuantidade(bebida, bebida.quantidade+1)
+            setContador(bebida.quantidade)
         } else {
-             setSobremesa(`${Sobremesa}` + " (" + `${(contador+1)}` +`X` + ")") 
-
-            precoDoceTotal = ((precoDoce) * (contador+1) ).toFixed(2)
-            console.log(precoDoceTotal)  
-        }
-
-        precoTotal = precoPratoTotal + precoDrinkTotal + precoDoceTotal
-        console.log(precoTotal)        
-        
+            mudaQuantidade(sobremesa, sobremesa.quantidade+1)
+            setContador(sobremesa.quantidade)
+        } 
     }
-
-    //console.log(Almoco)   
-      
-
+    
     return(
         <div className="cell">
-            <button onClick={(event) => clickPlus(event) } className="plus">
-            +
-            </button>
-
+            <button onClick={(event) => incrementaQuantidade(event) } className="plus">+</button>
             <div className="value">{contador}</div>
-
-            <button onClick={(event) => clickMinus(event)} className="minus">
-            -
-            </button>
-            <Footer precoTotal={precoTotal} />
+            <button onClick={(event) => decrementaQuantidade(event)} className="minus">-</button>
         </div>
-
     )
 }
