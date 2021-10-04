@@ -21,8 +21,7 @@ export default function Footer(props){
     if (finalizarPedido){
         return (
             <div class="barra-final">
-                    <bottom class="primeiro-botão finalizar "> 
-                    {/* <bottom class="primeiro-botão finalizar " onClick={() => Confirmar(almoco)}>  */}
+                    <bottom class="primeiro-botão finalizar " onClick={() => EnviarParaWhats(categorias, finalizarPedido)}>
                         <a class="frase2"> Fechar pedido </a>
                     </bottom>   
                 </div>
@@ -37,17 +36,26 @@ export default function Footer(props){
             )
     }
 
-    // function Confirmar(){
+    function EnviarParaWhats(categorias, finalizarPedido){
 
-    //     let valorTotal = precoTotal
+        if (!finalizarPedido) return;
+
+        let message = "Olá, gostaria de fazer o pedido: \n";
+        let total = 0;
+
+        categorias.forEach((categoria) => {
+            categoria.produtos
+                .filter(produto => produto.quantidade > 0)
+                .forEach(produto => {
+                    message += `-${categoria.nome} : ${produto.nome} ${produto.quantidade > 1 ? `(${produto.quantidade}x)` : ''} \n`
+
+                    total += produto.valor * produto.quantidade; 
+                })                                   
+        })
+
+        message += `Total: R$ ${total.toFixed(2).toLocaleString('pt-Br')}`
     
-    //     const mensagem = encodeURIComponent(`Olá, gostaria de fazer o pedido:
-    //     - Prato: ${almoco} 
-    //     - Bebida: ${Bebida}
-    //     - Sobremesa: ${Sobremesa}
-    //     - Total R$: ${valorTotal}`);
-    //     window.location.href = `https://wa.me/5511977505769?text=${mensagem}`;
-        
-       
-    // }                
+        const mensagem = encodeURIComponent(message);
+        window.location.href = `https://wa.me/5511977505769?text=${mensagem}`
+    }                
 }
